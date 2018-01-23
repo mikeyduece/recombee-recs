@@ -1,18 +1,37 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  componentWillMount(){
+    this.getAllMovies()
+  }
+
+  getAllMovies(){
+    fetch('https://recombee-api.herokuapp.com/api/v1/all_movies')
+      .then(response => response.json())
+      .then(data => {
+        localStorage.setItem('movies', JSON.stringify(data))
+       })
+  }
+
+  handleMovies(){
+    let movies = JSON.parse(localStorage.movies)
+    return movies.map((movie, i) => {
+      return (<div key={i} className='card'>
+                <div className='movie-card'>
+                    <p>{movie.title}</p>
+                    <p>{movie.genre}</p>
+                </div>
+              </div>
+      )
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        {this.handleMovies()}
       </div>
     );
   }
