@@ -18,12 +18,10 @@ class App extends Component {
   handleMovies(){
     let movies = JSON.parse(localStorage.movies)
     return movies.map((movie, i) => {
-      return (<div key={i} className='movie-card'>
-                <div className='movie-title-container'>
-                  <p>{movie.title}</p>
-                </div>
-                <div className='movie-genre-container'>
-                  <p>{movie.genre}</p>
+      return (<div key={i} className='card'>
+                <div className='movie-card'>
+                    <p>{movie.title}</p>
+                    <p>{movie.genre}</p>
                 </div>
               </div>
       )
