@@ -2,15 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      movies: [],
-      recs: [],
-    }
-  }
 
-  componentDidMount(){
+  componentWillMount(){
     this.getAllMovies()
   }
 
@@ -18,14 +11,23 @@ class App extends Component {
     fetch('https://recombee-api.herokuapp.com/api/v1/all_movies')
       .then(response => response.json())
       .then(data => {
-        debugger
-        this.setState({movies: data})
-      })
+        localStorage.setItem('movies', JSON.stringify(data))
+       })
   }
 
   handleMovies(){
-    let movies = this.state.movies
-    // debugger
+    let movies = JSON.parse(localStorage.movies)
+    return movies.map((movie, i) => {
+      return (<div key={i} className='movie-card'>
+                <div className='movie-title-container'>
+                  <p>{movie.title}</p>
+                </div>
+                <div className='movie-genre-container'>
+                  <p>{movie.genre}</p>
+                </div>
+              </div>
+      )
+    })
   }
 
   render() {
