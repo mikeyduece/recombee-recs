@@ -37,6 +37,8 @@
   width: 20em;
   padding: 0.25rem;
   margin: .5em;
+  background-color: lightgrey;
+  border-radius: .5em;
 }
 
 .movie-card {
