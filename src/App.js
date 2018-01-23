@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
+import Movie from './Movie'
 import './App.css';
 
 class App extends Component {
@@ -19,14 +20,7 @@ class App extends Component {
   handleMovies(){
     let movies = JSON.parse(localStorage.movies)
     return movies.map((movie, i) => {
-      return (<div key={i} className='card'>
-                <div className='movie-card'>
-                    <p>{movie.title}</p>
-                    <p>{movie.genre}</p>
-                    <Link to={{pathname: '/recommendations', state: {movieId: movie.id}}}>Recommendations</Link>
-                </div>
-              </div>
-      )
+      return (<Movie key={movie.id} movie={movie}/>)
     })
   }
 
