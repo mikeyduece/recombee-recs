@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom'
 import './App.css';
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
                 <div className='movie-card'>
                     <p>{movie.title}</p>
                     <p>{movie.genre}</p>
+                    <Link to={{pathname: '/recommendations', state: {movieId: movie.id}}}>Recommendations</Link>
                 </div>
               </div>
       )
