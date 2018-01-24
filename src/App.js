@@ -16,20 +16,12 @@ class App extends Component {
        })
   }
 
-  handleRecommendations(movie_id){
-    fetch('https://recombee-api.herokuapp.com/api/v1/' + movie_id + '/recomms')
-      .then(response => response.json())
-      .then(data => {
-        localStorage.setItem('recs'+movie_id, JSON.stringify(data))
-      })
-  }
-
   handleMovies(){
     let movies = JSON.parse(localStorage.movies)
     return movies.map((movie, i) => {
       return (<Movie key={movie.id}
                      movie={movie}
-                     getRecs={this.handleRecommendations.bind(this)}/>)
+              />)
     })
   }
 
