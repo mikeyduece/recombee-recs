@@ -21,7 +21,6 @@ class App extends Component {
       .then(response => response.json())
       .then(data => {
         localStorage.setItem('recs'+movie_id, JSON.stringify(data))
-        debugger
       })
   }
 
