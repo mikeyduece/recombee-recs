@@ -12,6 +12,7 @@ export default class Recommendations extends Component {
 
   componentDidMount(){
     this.getRecs()
+    this.renderRecommendations()
   }
 
   getRecs() {
@@ -32,7 +33,9 @@ export default class Recommendations extends Component {
       return recs.map((movie, i) => {
         return(<Movie key={movie.id} movie={movie} />)
       })
-    }else{this.getRecs()}
+    }else{
+      return this.getRecs()
+    }
   }
 
   render() {

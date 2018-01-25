@@ -6,72 +6,48 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      recomms: [],
+      movies: [],
       page: 1,
     }
-  }
-
-  componentWillMount(){
-    this.getAllMovies()
+    this.nextPage = this.nextPage.bind(this)
+    this.previousPage = this.previousPage.bind(this)
   }
 
   componentDidMount(){
     this.getAllMovies()
   }
 
-  getAllMovies(){
-    let page = JSON.parse(localStorage.page)
+  getAllMovies(page=null){
     fetch('https://recombee-api.herokuapp.com/api/v1/all_movies?page='+page)
       .then(response => response.json())
       .then(data => {
-        localStorage.setItem('movies', JSON.stringify(data))
+        this.setState({movies: data})
        })
   }
 
-  shouldComponentUpdate(nextState){
-    if(this.state !== nextState){
-      return true
-    }
+  nextPage(){
+    let page = this.state.page
+    page++
+    this.setState({page: page})
+    this.getAllMovies(page)
   }
 
-  componentWillUpdate(){
-    this.handleMovies()
-  }
-
-  handleMovies(){
-    if(localStorage.movies !== null && localStorage.movies !== undefined){
-      console.log('if statement')
-      let movies = JSON.parse(localStorage.movies)
-      return movies.map((movie, i) => {
-        return (<Movie key={movie.id}
-                       movie={movie}
-                />)
-      })
-    }
-  }
-
-  handlePages(e){
-    e.preventDefault()
-    let page = JSON.parse(localStorage.page) || 1
-    if(e.target.innerText === 'Next'){
-      page++
-      this.setState({page: page})
-      localStorage.setItem('page', JSON.stringify(page))
-      this.getAllMovies()
-    }else{
-      page--
-      this.setState({page: page})
-      localStorage.setItem('page', JSON.stringify(page))
-      this.getAllMovies()
-    }
+  previousPage(){
+    let page = this.state.page
+    page--
+    this.setState({page: page})
+    this.getAllMovies(page)
   }
 
   render() {
     return (
       <div className="App">
-        {this.handleMovies()}
-        <button onClick={this.handlePages.bind(this)} className='previous'>Previous</button>
-        <button onClick={this.handlePages.bind(this)} className='next'>Next</button>
+        {this.state.movies.map(movie => {
+          return <Movie key={movie.id} movie={movie} />
+        })
+        }
+        <button onClick={this.previousPage} className='previous'>Previous</button>
+        <button onClick={this.nextPage} className='next'>Next</button>
       </div>
     );
   }
