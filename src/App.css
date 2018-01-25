@@ -45,3 +45,17 @@
   flex: 1;
   align-self: flex-start;
 }
+
+.previous {
+  float: left;
+  margin-top: 1em;
+}
+
+.next {
+  float: right;
+  margin-top: 1em;
+}
+
+.next:hover, .previous:hover {
+  cursor: pointer;
+}
