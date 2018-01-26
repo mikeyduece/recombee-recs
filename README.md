@@ -1,5 +1,6 @@
 # Recombee Test Task
 #### React Application
+>Production site can be viewed at https://recombee.herokuapp.com/
 
 This code challenge provided a paginated list returned from a Rails backend that is consumed on the front end with React. Using Recombee's cloud service, I seeded the catalog with sample database information(movies and ratings for said movies). 
 
