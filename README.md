@@ -8,6 +8,7 @@ Upon displaying the movie cards, a user can page through the api return with the
 ## Installation
 
 Fork and or clone repo
+
 `cd recombee-recs`
 
 `npm install`
