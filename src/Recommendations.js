@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Movie from './Movie'
-import './Recommendations.css'
 
 export default class Recommendations extends Component {
   constructor(props) {
