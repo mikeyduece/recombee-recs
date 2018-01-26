@@ -39,6 +39,9 @@
   margin: .5em;
   background-color: lightgrey;
   border-radius: .5em;
+  border: 1px solid;
+  padding: 1px;
+  box-shadow: 5px 5px #888888;
 }
 
 .movie-card {
@@ -54,6 +57,20 @@
 .next {
   float: right;
   margin-top: 1em;
+}
+
+.next, .previous {
+  width: 10em;
+  height: 3em;
+  border-radius: .5em;
+  background-color: darkred;
+  font-size: 1em;
+  font-weight: bolder;
+  font-variant: small-caps;
+  color: white;
+  border: 1px solid;
+  padding: 1px;
+  box-shadow: 2px 5px lightgrey;
 }
 
 .next:hover, .previous:hover {
